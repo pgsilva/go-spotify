@@ -59,11 +59,11 @@ A API estará disponível em `http://localhost:3000`.
 
 ## 📚 Endpoints
 
-###  ✔️ Health Check
+- ###  ✔️ Health Check
 
-- **Rota**: /api/v1/health
+    - **Rota**: /api/v1/health
 
-- **Método**: GET
+    - **Método**: GET
 
 **Exemplo de Requisição**:
 
@@ -72,14 +72,14 @@ curl -X GET http://localhost:3000/api/v1/health
 ```
 
 
-### 🎙️ Buscar Podcasts
+- ### 🎙️ Buscar Podcasts
 
-- **Rota**: /api/v1/spodify/player/search
+    - **Rota**: /api/v1/spodify/player/search
 
-- **Método**: GET
+    - **Método**: GET
 
-- **Parâmetros**: 
-    - `q`: Termo de busca (query string)
+    - **Parâmetros**: 
+        - `q`: Termo de busca (query string)
 
 **Exemplo de Requisição**:
     
