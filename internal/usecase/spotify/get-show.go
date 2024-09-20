@@ -10,44 +10,41 @@ import (
 	"github.com/pgsilva/go-spotify/pkg/config"
 )
 
-func SearchShow(query string, token string) (spotifyapi.SpotifyShowApiResponse, error) {
-	slog.Info("Searching for show", "query", query)
+func GetShow(id string, token string) (spotifyapi.SpotifyShow, error) {
+	slog.Info("Getting show", "id", id)
 
-	request, err := prepareSearchRequest(query, token)
+	request, err := prepareGetShowRequest(id, token)
 	if err != nil {
 		slog.Error("Error preparing request", "err", err)
-		return spotifyapi.SpotifyShowApiResponse{}, err
+		return spotifyapi.SpotifyShow{}, err
 	}
 
 	client := config.GetHttpClient()
 	response, err := client.Do(request)
 	if err != nil {
 		slog.Error("Error calling Spotify API", "err", err)
-		return spotifyapi.SpotifyShowApiResponse{}, err
+		return spotifyapi.SpotifyShow{}, err
 	}
 
-	show := spotifyapi.SpotifyShowApiResponse{}
+	show := spotifyapi.SpotifyShow{}
 	if err := json.Unmarshal(response, &show); err != nil {
-		return spotifyapi.SpotifyShowApiResponse{}, err
+		return spotifyapi.SpotifyShow{}, err
 	}
 
 	return show, nil
 }
 
-func prepareSearchRequest(query string, token string) (*http.Request, error) {
+func prepareGetShowRequest(id string, token string) (*http.Request, error) {
 	slog.Info("Preparing request to call Spotify API")
 
-	apiPath, err := url.Parse(config.SpotifyContentApiUrl + "search")
+	apiPath, err := url.Parse(config.SpotifyContentApiUrl + "shows/" + id)
 	if err != nil {
 		slog.Error("Error parsing URL", "err", err)
 		return nil, err
 	}
 
 	params := url.Values{}
-	params.Add("q", query)
-	params.Add("type", "show")
 	params.Add("market", "BR")
-	params.Add("limit", "20")
 	apiPath.RawQuery = params.Encode()
 
 	slog.Info("Request data", "url", apiPath, "data", params)

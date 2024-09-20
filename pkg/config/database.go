@@ -27,12 +27,6 @@ func InitPostgres() error {
 		return err
 	}
 
-	err = db.AutoMigrate(&schemas.FavoriteDevice{})
-	if err != nil {
-		slog.Error("Failed to migrate the database", "err", err, "table", "favorite_device")
-		return err
-	}
-
 	err = db.AutoMigrate(&schemas.FavoriteShow{})
 	if err != nil {
 		slog.Error("Failed to migrate the database", "err", err, "table", "favorite_show")

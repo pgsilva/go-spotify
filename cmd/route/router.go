@@ -29,19 +29,19 @@ func InitRoutes(router *fiber.App) {
 		spodifyRoutes.Get("/podcast/:id/episode", handler.GetEpisodes)
 		spodifyRoutes.Get("/podcast/:id/episode/:episode_id", handler.GetEpisodes)
 
-		spodifyRoutes.Put("/podcast/:id/episode/:episode_id/play", handler.PlayShow)
-		spodifyRoutes.Put("/podcast/:id/episode/:episode_id/pause", handler.PauseShow)
+		// spodifyRoutes.Put("/podcast/:id/play", handler.PlayShow)
+		// spodifyRoutes.Put("/podcast/:id/pause", handler.PauseShow)
 
-		spodifyRoutes.Get("/devices", handler.GetDevices)
+		// spodifyRoutes.Get("/podcast/me/devices", handler.GetDevices)
 
 	}
 
 	/* /v1/api/spodify/db */
 	dbRoutes := spodifyRoutes.Group("/db")
 	{
-		dbRoutes.Get("/device", handler.GetFavoriteDevice)
-		dbRoutes.Post("/device", handler.CreateFavoriteDevice)
-		dbRoutes.Delete("/device/:id", handler.DeleteFavoriteDevice)
+		// dbRoutes.Get("/device", handler.GetFavoriteDevice)
+		// dbRoutes.Post("/device", handler.CreateFavoriteDevice)
+		// dbRoutes.Delete("/device/:id", handler.DeleteFavoriteDevice)
 
 		dbRoutes.Get("/podcast", handler.GetFavoriteShow)
 		dbRoutes.Post("/podcast", handler.CreateFavoriteShow)
