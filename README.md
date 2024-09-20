@@ -1,6 +1,6 @@
 # 🎧 Spodify - Podcast Search API
 
-Bem-vindo ao **Spodify**! Este projeto é uma API escrita em Go que interage com a API do Spotify para realizar buscas de podcasts. 🚀
+Bem-vindo ao **Spodify**! Este projeto é uma API escrita em Go que interage com a API do Spotify para realizar buscas de podcasts.
 
 ## 📋 Especificações do Projeto
 
@@ -64,7 +64,7 @@ A API estará disponível em `http://localhost:3000`.
 
 ## 📚 Endpoints
 
-###  ✔️ Health Check
+- ###  ✔️ Health Check
 
 ```sh
 curl -X GET http://localhost:3000/api/v1/health
