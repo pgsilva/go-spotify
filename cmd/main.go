@@ -10,13 +10,29 @@ import (
 
 func main() {
 	startupEnvVariables()
+	startupDb()
 	startupApp()
 }
 
 func startupEnvVariables() {
+	slog.Info("Starting the environment variables...")
 	if err := config.InitEnvVariables(); err != nil {
 		return
 	}
+}
+
+func startupDb() error {
+	slog.Info("Starting the database...")
+
+	err := config.InitPostgres()
+	if err != nil {
+		slog.Error("Failed to start the database", "err", err)
+		return err
+	}
+
+	slog.Info("Database connection established successfully")
+
+	return nil
 }
 
 func startupApp() {

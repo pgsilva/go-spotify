@@ -35,6 +35,11 @@ SPOTIFY_CLIENT_ID={your_client_id}
 SPOTIFY_CLIENT_SECRET={your_client_secret}
 SPOTIFY_CONTENT_API_URL=https://api.spotify.com/v1/
 SPOTIFY_ACCOUNT_API_URL=https://accounts.spotify.com/api/
+POSTGRES_USER=usr
+POSTGRES_PASSWORD=pass
+POSTGRES_DB=maindb
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
 ````
 
 3. **Instale as dependências**:
@@ -61,31 +66,122 @@ A API estará disponível em `http://localhost:3000`.
 
 ###  ✔️ Health Check
 
-- **Rota**: /api/v1/health
-
-- **Método**: GET
-
-**Exemplo de Requisição**:
-
 ```sh
 curl -X GET http://localhost:3000/api/v1/health
 ```
 
 
-### 🎙️ Buscar Podcasts
+### 🎙️ Get Search Podcasts
 
-- **Rota**: /api/v1/spodify/player/search
+- **Rota**: /v1/api/spodify/podcast/search
 
-- **Método**: GET
-
-- **Parâmetros**: 
-    - `q`: Termo de busca (query string)
-
-**Exemplo de Requisição**:
     
 ```sh
-curl -X GET http://localhost:3000/api/v1/spodify/player/search?q=nerdcast
+curl -X GET http://localhost:3000/v1/api/spodify/podcast/search?q=nerdcast
 ```
+
+### 🎙️Get Podcast
+
+- **Rota**: /v1/api/spodify/podcast/:id
+
+
+
+```sh
+curl -X GET http://localhost:3000/v1/api/spodify/podcast/22Wgt4ASeaw8mmoqAWNUn1
+```
+
+### 🎙️Get Episódios
+
+- **Rota**: /v1/api/spodify/podcast/:id/episode 
+
+
+```sh
+curl -X GET http://localhost:3000/v1/api/spodify/podcast/22Wgt4ASeaw8mmoqAWNUn1/episode
+```
+
+### 🎙️Get Episódio 
+
+- **Rota**: /v1/api/spodify/podcast/:id/episode/:episode_id
+    
+```sh
+curl -X GET http://localhost:3000/v1/api/spodify/podcast/22Wgt4ASeaw8mmoqAWNUn1/episode/0k6Z2J0J4BjK2Q3CJ4n8kP
+```
+
+### ▶️ Put Play
+
+- **Rota**: /v1/api/spodify/podcast/:id/episode/:episode_id/play
+
+
+```sh
+curl -X PUT http://localhost:3000/v1/api/spodify/podcast/22Wgt4ASeaw8mmoqAWNUn1/episode/0k6Z2J0J4BjK2Q3CJ4n8kP/play
+```
+
+### 🛑 Put Pause
+
+- **Rota**: /v1/api/spodify/podcast/:id/episode/:episode_id/pause
+
+```sh
+curl -X PUT http://localhost:3000/v1/api/spodify/podcast/22Wgt4ASeaw8mmoqAWNUn1/episode/0k6Z2J0J4BjK2Q3CJ4n8kP/pause
+```
+
+### 📱 Get Devices
+
+- **Rota**: /v1/api/spodify/devices
+
+```sh
+curl -X GET http://localhost:3000/v1/api/spodify/devices
+```
+
+### ⭐ Get Favorite Devices
+
+- **Rota**: /v1/api/spodify/db/device
+
+```sh
+curl -X GET http://localhost:3000/v1/api/spodify/db/device
+```
+
+### ⭐ Post Favorite Device
+
+- **Rota**: /v1/api/spodify/db/device
+
+```sh
+curl -X POST http://localhost:3000/v1/api/spodify/db/device -d '{"id":"1","name":"device1", "type":"type1"}'
+```
+
+### ⭐ Delete Favorite Device
+
+- **Rota**: /v1/api/spodify/db/device/:id
+
+```sh
+curl -X DELETE http://localhost:3000/v1/api/spodify/db/device/1
+```
+
+### ⭐ Get Favorite Podcasts
+
+- **Rota**: /v1/api/spodify/db/podcast
+
+```sh
+curl -X GET http://localhost:3000/v1/api/spodify/db/podcast
+```
+
+### ⭐ Post Favorite Podcast
+
+- **Rota**: /v1/api/spodify/db/podcast
+
+```sh
+
+curl -X POST http://localhost:3000/v1/api/spodify/db/podcast -d '{"id":"1","name":"podcast1", "type":"type1", "uri":"uri1", "poster":"poster1"}'
+```
+
+### ⭐ Delete Favorite Podcast
+
+- **Rota**: /v1/api/spodify/db/podcast/:id
+
+```sh
+curl -X DELETE http://localhost:3000/v1/api/spodify/db/podcast/1
+```
+
+
 
 # 🤝 Contribuições
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.

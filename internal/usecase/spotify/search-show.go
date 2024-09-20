@@ -11,7 +11,7 @@ import (
 )
 
 func SearchShow(query string, token string) (spotifyapi.SpotifyShowApiResponse, error) {
-	slog.Info("Searching for show", "query", query)
+	slog.Info("Searching for show", "query", query, "token", token)
 
 	request, err := prepareRequest(query, token)
 	if err != nil {

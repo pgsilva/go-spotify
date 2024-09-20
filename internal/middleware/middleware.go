@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/gofiber/fiber/v3"
+	"github.com/google/uuid"
 	"github.com/pgsilva/go-spotify/internal/model/spotifyapi"
 	"github.com/pgsilva/go-spotify/pkg/config"
 )
@@ -18,6 +19,9 @@ func GenerateApiToken(c fiber.Ctx) error {
 	*/
 
 	slog.Info("Generating Spotify API token")
+
+	uuid := uuid.New()
+	slog.Info("Request ID", "id", uuid)
 
 	request, err := prepareRequest()
 	if err != nil {
